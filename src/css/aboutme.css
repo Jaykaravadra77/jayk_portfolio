@@ -1,0 +1,53 @@
+/* File Path: src/css/aboutme.css */
+
+.aboutme-container {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  /* height: 100%; */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.about-section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  width: 100%;
+}
+
+.about-description p {
+  font-size: 22px; /* Increased font size */
+  line-height: 1.8; /* Adjusted line height */
+  color: #333;
+  margin-bottom: 16px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  .about-description p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 15px;
+  }
+
+  .about-description p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section {
+    padding: 10px;
+  }
+
+  .about-description p {
+    font-size: 12px;
+  }
+}
