@@ -9,7 +9,6 @@ html, body {
   height: 100%;
   width: 100%;
   font-family: Arial, sans-serif;
-  overflow: hidden; /* Prevent scrolling on the body */
 }
 
 img {
@@ -34,33 +33,17 @@ ul, ol {
 }
 
 /* Main container */
-.homepage {
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-}
-
-/* Left column - fixed */
-.left-column {
-  flex: 0.2;
-  padding: 2rem;
-  background-color: #4299e1;
-  color: #ffffff;
+.mobile-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  overflow-y: auto; /* Allow vertical scrolling if content overflows */
+  min-height: 100vh;
+  overflow-y: auto;
 }
 
-/* Right column - scrollable */
-.right-column {
-  flex: 1;
-  padding: 4rem;
-  overflow-y: auto; /* Enable vertical scrolling */
-  height: 100vh; /* Full viewport height */
+.homepage {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
 }
 
 /* Content wrapper */
@@ -71,28 +54,29 @@ ul, ol {
   background-color: #ffffff;
 }
 
-/* Additional styles */
-.name {
-  font-size: 2.2rem;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.position {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-.cta-container {
+/* Left column */
+.left-column {
+  flex: 0 0 300px;
+  padding: 2rem;
+  background-color: #4299e1;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow-y: auto;
 }
 
+/* Right column */
+.right-column {
+  flex: 1;
+  padding: 4rem;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+/* Additional styles */
 .logo {
   width: 200px;
   height: 200px;
@@ -100,6 +84,29 @@ ul, ol {
   object-fit: cover;
   border: 5px solid #ffffff;
   margin-bottom: 1.5rem;
+}
+
+.name {
+  font-size: 2.2rem;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.position {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.cta-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
 }
 
 .cta-button {
@@ -130,24 +137,119 @@ ul, ol {
 }
 
 /* Responsive design */
+@media (max-width: 1024px) {
+  .left-column {
+    flex: 0 0 250px;
+  }
+}
+
 @media (max-width: 768px) {
   .homepage {
     flex-direction: column;
-  }
-
-  .left-column {
-    flex: none;
     height: auto;
-    padding: 2rem;
-  }
-
-  .right-column {
-    flex: 1;
-    height: auto;
-    padding: 2rem;
   }
 
   .content-wrapper {
     flex-direction: column;
   }
+
+  .left-column {
+    flex: none;
+    width: 100%;
+    height: auto;
+    max-height: 280px; /* Fixed height for mobile */
+    min-height: auto;
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .right-column {
+    flex: 1;
+    height: auto;
+    min-height: calc(100vh - 280px); /* Adjust based on left-column height */
+    padding: 1.5rem;
+    overflow-y: auto;
+  }
+
+  .logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0.5rem;
+  }
+
+  .name {
+    font-size: 1.4rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .position {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .cta-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    flex: 1 1 auto;
+    min-width: 100px;
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .left-column {
+    max-height: 250px; /* Even smaller for very small screens */
+  }
+
+  .right-column {
+    min-height: calc(100vh - 250px);
+  }
+
+  .logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .name {
+    font-size: 1.2rem;
+  }
+
+  .position {
+    font-size: 0.9rem;
+  }
+
+  .cta-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Additional styles for contact info */
+.contact-info {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.contact-item img {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
 }
